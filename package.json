@@ -1,0 +1,22 @@
+{
+  "name": "steele-gol-tools",
+  "version": "1.0.0",
+  "description": "personal tools for gol",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisRothove/steele-gol-tools.git"
+  },
+  "author": "Featherwalk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisRothove/steele-gol-tools/issues"
+  },
+  "homepage": "https://github.com/ChrisRothove/steele-gol-tools#readme",
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}
