@@ -56,11 +56,12 @@ body {
   height: var(--bar-height);
   background-color: darkslategray;
   display: block;
+  border: 2px inset gray;
 }
 .hp-bar-fill {
   width: calc((var(--current-hp) / var(--max-hp)) * 100%);
   height: var(--bar-height);
-  background-color: forestgreen;
+  background-color: aquamarine;
 }
 
 .ip-bar {
@@ -69,6 +70,7 @@ body {
   height: var(--bar-height);
   background-color: darkslategray;
   display: block;
+  border: 2px inset gray;
 }
 .ip-bar-fill {
   width: calc((var(--current-ip) / var(--max-ip)) * 100%);
