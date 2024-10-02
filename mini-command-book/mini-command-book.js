@@ -1,85 +1,73 @@
-window.TammyCount = window.TammyCount ? window.TammyCount + 1 : 0;
+window.TammyCount = window.TammyCount >= 0 ? window.TammyCount + 1 : 0;
+console.log(window.TammyCount);
 
-let currentInfo = null;
+if (typeof TammyBookHandler === "function") {
+  new TammyBookHandler().initiateButtons();
+} else {
+  class TammyBookHandler {
+    constructor() {
+      this.currentInfo = null;
+      this.CurrentWindow =
+        document.getElementsByClassName("tammy-wrapper")[window.TammyCount];
 
-function getAllCommandTitles(element) {
-  return element.getElementsByClassName("command");
-}
+      this.AllCommandTitles =
+        this.CurrentWindow.getElementsByClassName("command");
 
-function getAllCommandDescriptions(element) {
-  return element.getElementsByClassName("command-details");
-}
+      this.AllCommandDescriptions =
+        this.CurrentWindow.getElementsByClassName("command-details");
 
-function getStyleTitle(element) {
-  return element.getElementsByClassName("style")[0];
-}
+      this.StyleTitle = this.CurrentWindow.getElementsByClassName("style")[0];
 
-function getStyleDescription(element) {
-  return element.getElementsByClassName("style-details")[0];
-}
+      this.StyleDescription =
+        this.CurrentWindow.getElementsByClassName("style-details")[0];
 
-function getInfoWindow(element) {
-  return element.getElementsByClassName("gif-info")[0];
-}
+      this.InfoWindow =
+        this.CurrentWindow.getElementsByClassName("gif-info")[0];
+    }
 
-function getCurrentWindow() {
-  return document.getElementsByClassName("tammy-wrapper")[window.TammyCount];
-}
+    resetInfo(index, titleText, descText) {
+      if (this.currentInfo == index) {
+        this.currentInfo = null;
+      } else {
+        this.currentInfo = index;
+      }
 
-function resetInfo(index, titleText, descText) {
-  const InfoBlock = getInfoWindow(getCurrentWindow());
+      if (this.currentInfo !== null) {
+        this.InfoWindow.innerHTML = `<b>${titleText}</b><hr>${descText}`;
+      } else {
+        this.InfoWindow.innerHTML = "";
+      }
+    }
 
-  if (currentInfo == index) {
-    currentInfo = null;
-  } else {
-    currentInfo = index;
+    populateInfoBlock(index) {
+      const titleText = this.AllCommandTitles[index]?.innerHTML;
+      const descText = this.AllCommandDescriptions[index]?.innerHTML;
+
+      this.resetInfo(index, titleText, descText);
+    }
+
+    populateInfoWithStyle() {
+      const titleText = this.StyleTitle.innerHTML;
+      const descText = this.StyleDescription.innerHTML;
+
+      this.resetInfo(100, titleText, descText);
+    }
+
+    initiateButtons() {
+      const buttons = Array.from(this.AllCommandTitles) || [];
+      buttons?.forEach((element, index) =>
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.populateInfoBlock(index);
+        })
+      );
+
+      this.StyleTitle.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.populateInfoWithStyle();
+      });
+    }
   }
 
-  if (currentInfo !== null) {
-    InfoBlock.innerHTML = `<b>${titleText}</b><hr>${descText}`;
-  } else {
-    InfoBlock.innerHTML = "";
-  }
+  new TammyBookHandler().initiateButtons();
 }
-
-function populateInfoBlock(index) {
-  const CurrentWindow = getCurrentWindow();
-  const titles = getAllCommandTitles(CurrentWindow);
-  const descriptions = getAllCommandDescriptions(CurrentWindow);
-
-  const titleText = titles[index]?.innerHTML;
-  const descText = descriptions[index]?.innerHTML;
-
-  resetInfo(index, titleText, descText);
-}
-
-function populateInfoWithStyle() {
-  const CurrentWindow = getCurrentWindow();
-  const Title = getStyleTitle(CurrentWindow);
-  const Desc = getStyleDescription(CurrentWindow);
-
-  const titleText = Title.innerHTML;
-  const descText = Desc.innerHTML;
-
-  resetInfo(100, titleText, descText);
-}
-
-function initiateButtons() {
-  const CurrentWindow = getCurrentWindow();
-
-  const buttons = Array.from(getAllCommandTitles(CurrentWindow)) || [];
-  buttons?.forEach((element, index) =>
-    element.addEventListener("click", (e) => {
-      e.preventDefault();
-      populateInfoBlock(index);
-    })
-  );
-
-  const styleButton = getStyleTitle(CurrentWindow);
-  styleButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    populateInfoWithStyle();
-  });
-}
-
-initiateButtons();
