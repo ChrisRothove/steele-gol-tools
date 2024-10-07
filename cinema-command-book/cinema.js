@@ -341,9 +341,11 @@ if (typeof CommandBookController === "function") {
     htmlMasterySection() {
       return `
         <div class="cinema-section">
-          ${this.masteries.map((mastery) =>
-            this.htmlWindowItem(mastery.name, mastery.details, mastery.stats)
-          )}
+          ${this.masteries
+            .map((mastery) =>
+              this.htmlWindowItem(mastery.name, mastery.details, mastery.stats)
+            )
+            .join("")}
         </div>
       `;
     }
@@ -363,9 +365,11 @@ if (typeof CommandBookController === "function") {
     htmlCommandSection() {
       return `
         <div class="cinema-section">
-          ${this.commands.map((command) =>
-            this.htmlWindowItem(command.name, command.details, command.stats)
-          )}
+          ${this.commands
+            .map((command) =>
+              this.htmlWindowItem(command.name, command.details, command.stats)
+            )
+            .join("")}
         </div>
       `;
     }
@@ -373,13 +377,15 @@ if (typeof CommandBookController === "function") {
     htmlProvisionSection() {
       return `
         <div class="cinema-section">
-          ${this.provisions.map((provision) =>
-            this.htmlWindowItem(
-              provision.name,
-              provision.details,
-              provision.stats
+          ${this.provisions
+            .map((provision) =>
+              this.htmlWindowItem(
+                provision.name,
+                provision.details,
+                provision.stats
+              )
             )
-          )}
+            .join("")}
         </div>
       `;
     }
