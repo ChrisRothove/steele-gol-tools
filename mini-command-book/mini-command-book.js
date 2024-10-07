@@ -1,5 +1,4 @@
 window.TammyCount = window.TammyCount >= 0 ? window.TammyCount + 1 : 0;
-console.log(window.TammyCount);
 
 if (typeof TammyBookHandler === "function") {
   new TammyBookHandler().initiateButtons();
