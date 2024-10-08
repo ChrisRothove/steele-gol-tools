@@ -1,6 +1,7 @@
 window.BookCount = window.BookCount >= 0 ? window.BookCount + 1 : 0;
 
 if (typeof CommandBookController === "function") {
+  console.log(window.BookCount);
   new CommandBookController(window.BookCount).initiate();
 } else {
   class CommandBookController {
