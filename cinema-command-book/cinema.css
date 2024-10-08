@@ -173,6 +173,9 @@
   );
   backdrop-filter: blur(10px);
 }
+.cinema-window hr {
+  border-block-color: var(--accent-color);
+}
 
 .cinema-section {
   display: none;
