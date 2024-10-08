@@ -102,7 +102,7 @@ if (typeof CommandBookController === "function") {
           section.style.display = "none";
         }
       });
-      if (this.currentPanel === 0 || this.currentPanel === 1) {
+      if (this.currentPanel === 0) {
         reel.classList.add("tall");
       } else {
         reel.classList.remove("tall");
