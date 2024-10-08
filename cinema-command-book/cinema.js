@@ -8,7 +8,8 @@ if (typeof CommandBookController === "function") {
     constructor(bookCount) {
       this.bookCount = bookCount;
       this.TempButton = document.getElementsByClassName("temporary")[bookCount];
-      this.Template = document.getElementsByClassName("cinema-template")[0];
+      this.Template =
+        document.getElementsByClassName("cinema-template")[bookCount];
 
       // data vars
       this.DataContainer =
