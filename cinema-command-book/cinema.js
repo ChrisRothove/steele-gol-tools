@@ -21,6 +21,12 @@ if (typeof CommandBookController === "function") {
       this.advance = this.arrayify(this.getFirst("advancements"));
       this.critAdv = this.arrayify(this.getFirst("critical-advancements"));
 
+      if (this.config[3]) {
+        this.mirage = this.arrayify(this.getFirst("mirage"));
+      } else {
+        this.mirage = [];
+      }
+
       this.style = this.objectify([
         "style",
         "style-details",
@@ -265,6 +271,12 @@ if (typeof CommandBookController === "function") {
       const weak = this.stats[8];
       const res = this.stats[9];
 
+      const shouldUseMirage = this.config[3];
+      const medals = this.mirage[0];
+      const mMas = this.mirage[1];
+      const mPro = this.mirage[2];
+      const mCom = this.mirage[3];
+
       return `
         <div class="cinema-section">
           <div class="cinema-header"><b>Stats</b></div>
@@ -306,6 +318,32 @@ if (typeof CommandBookController === "function") {
               <div class="cinema-stat-label">ADVANCE</div>
             </div>
           </div>
+
+          ${
+            shouldUseMirage
+              ? `
+            <div class="cinema-header"><b>Mirage</b></div>
+          <div class="cinema-stat-row">
+            <div class="cinema-stat-box">
+              <div class="cinema-stat"><b>${medals}</b></div>
+              <div class="cinema-stat-label">MEDAL</div>
+            </div>
+            <div class="cinema-stat-box">
+              <div class="cinema-stat"><b>${mMas}</b></div>
+              <div class="cinema-stat-label">MASTERY</div>
+            </div>
+            <div class="cinema-stat-box">
+              <div class="cinema-stat"><b>${mPro}</b></div>
+              <div class="cinema-stat-label">PROVISION</div>
+            </div>
+            <div class="cinema-stat-box">
+              <div class="cinema-stat"><b>${mCom}</b></div>
+              <div class="cinema-stat-label">COMMAND</div>
+            </div>
+          </div>
+            `
+              : ""
+          }
 
           <div class="cinema-header"><b>Weaknesses</b></div>
           <p>${weak}</p>
