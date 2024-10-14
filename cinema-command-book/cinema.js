@@ -271,7 +271,7 @@ if (typeof CommandBookController === "function") {
       const weak = this.stats[8];
       const res = this.stats[9];
 
-      const shouldUseMirage = this.config[3];
+      const shouldUseMirage = this.config[3]?.toLowerCase() === "yes";
       const medals = this.mirage[0];
       const mMas = this.mirage[1];
       const mPro = this.mirage[2];
