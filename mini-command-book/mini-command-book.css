@@ -1,6 +1,7 @@
 body {
   --current-hp: 50;
   --max-hp: 100;
+  --hp-shield: 0;
   --current-ip: 10;
   --max-ip: 20;
 
@@ -64,6 +65,12 @@ body {
   width: calc((var(--current-hp) / var(--max-hp)) * 100%);
   height: var(--bar-height);
   background-color: aquamarine;
+  text-align: right;
+}
+.tammy-hp-shield {
+  width: calc((var(--hp-shield) / var(--current-hp)) * 100%);
+  height: var(--bar-height);
+  background-color: rgb(91, 162, 243);
 }
 
 .ip-bar {
