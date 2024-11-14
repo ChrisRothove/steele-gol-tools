@@ -16,6 +16,13 @@
   --item-color: gray;
 }
 
+.collection-placeholder button,
+.collection-placeholder button:hover {
+  letter-spacing: normal;
+  margin: auto;
+  text-transform: none;
+}
+
 /* CARD COLORS */
 .card-magic {
   background-color: var(--magic-color);
