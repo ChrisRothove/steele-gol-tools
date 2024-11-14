@@ -128,6 +128,10 @@ if (typeof CollectionHandler === "function") {
       this.populateDeckButtons();
     }
 
+    // handle images
+    getImageUrl(cardId) {
+      return `https://chrisrothove.github.io/steele-gol-tools/tcg/src/${cardId}.png`;
+    }
     // handle container html
     generateContainer() {
       return `
@@ -234,6 +238,7 @@ if (typeof CollectionHandler === "function") {
         text,
         specialType,
         specialText,
+        code,
       } = this.activeCard;
 
       const colorClass = this.getColorClass(attribute);
@@ -259,7 +264,8 @@ if (typeof CollectionHandler === "function") {
           `
             : ""
         }
-        <img src="https://i.postimg.cc/YqJZXVmt/playtest.png"></img>
+        <img src="${this.getImageUrl(code)}"
+        onerror="this.onerror=null; this.src='https://chrisrothove.github.io/steele-gol-tools/tcg/src/playtest.png';"></img>
       </div>
       <div class="card-text">
         <h2>${name}</h2>
