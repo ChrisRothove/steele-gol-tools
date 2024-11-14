@@ -1,0 +1,48 @@
+﻿Name,Rarity,Card Type,CP,Strength,Defense,Card Text,Special Type,Special Text,Attribute,ChampTotal,code
+Master Aqua,Promo,Champion,12,4,14,"When one of your “Blizzard” forms expires, draw a card.",,,Magic,30,aqua1
+Master Terra,Promo,Champion,10,6,14,Terra’s attacks have Piercing.,,,Power,30,ven1
+Master Ventus,Promo,Champion,16,5,9,Your “Aero” sleights have split. (Round down odd number values.),,,Speed,30,tera1
+"Sora, At Level 1 Again",Promo,Champion,12,4,14,Your sleights that total 3 or less have piercing.,,,Speed,30,sora1
+"Riku, Dark Scion",Promo,Champion,12,5,13,“Dark” sleights you use that are not clashed deal 1 extra damage.,,,Power,30,riku1
+"Kairi, Left Behind",Promo,Champion,14,3,13,"When you draw a card, if Kairi is in your back row, your active champion heals 1.",,,Magic,30,kai1
+"Gravitas, Misery Incarnate",Promo,Champion,13,4,13,"At each player’s build phase, if their active champion has less than 13 defense, that champion takes 1 damage.",,,Speed,30,grav1
+"Temporius, Eternity Crafter",Promo,Champion,17,3,10,"When Temporius deals damage with an attack, the attacked player discards a card.",,,Magic,30,temp1
+"Artis, Remnant Artificer",Promo,Champion,8,6,16,"When you clash with a 0 cost card, Artis heals 2.",,,Power,30,art1
+"Aqua, Headmaster",Champion,Champion,14,3,15,"When you draw a card, each of your backrow champions heal 1.",,,Magic,32,aqua2
+"Salvare, Brash Conquerer",Champion,Champion,11,5,16,"When you play a card in your provision zone, Any sleight you use this turn gains piercing.",,,Power,32,salv1
+Fire,all 1-9,Command,,,,,Form,Sleights deal 1 extra damage.,Magic,0,fir
+Dark Fire,UC Odd,Command,,,,,Clash,Your opponent discards a card.,Magic,0,daf
+Blizzard,all 1-9,Command,,,,,Form,Clash Sleights value increases by 1.,Magic,0,bli
+Dark Blizzard,UC Odd,Command,,,,,Clash,increase the Clash value by 1.,Magic,0,dab
+Thunder,all 1-9,Command,,,,Piercing,Form,Champion attacks deal 2 extra damage.,Magic,0,thu
+Dark Thunder,UC Odd,Command,,,,,Clash,deal 3 damage to the opponent’s active champion.,Magic,0,dat
+Combo Plus,UC Even,Command,,,,Split,Sleight,Another card in the sleight gains split.,Power,0,com
+Wind Raid,UC Odd,Command,,,,Piercing,Clash,Deal 2 damage to a champion on your opponent’s back row.,Speed,0,win
+Dark Dive,Rare 6-9,Command,,,,,Form,"When your active champion’s defense would hit 0, instead it becomes 1.",Power,0,dad
+Barrier,UC Even,Command,,,,Defending,Form,"When your active champion’s defense would hit 0, instead it becomes 1.",Magic,0,bar
+Protect,all 1-9,Command,,,,Defending,Clash,Your active champion heals 2.,Speed,0,pro
+Cure,all 1-9,Command,,,,Healing,Sleight,A champion on your back row heals 2.,Magic,0,cur
+Cover Ally,all 1-9,Command,,,,Healing,Clash,Your backrow champions each heal 2.,Speed,0,coa
+Sonic Blade,all 1-9,Command,,,,,Sleight,deal 2 damage to the opponent’s active champion.,Speed,0,son
+Earth,all 1-9,Command,,,,,Sleight,Increase Sleight value by 1.,Magic,0,ear
+Aero,all 1-9,Command,,,,,Form,reduce incoming damage by 2.,Magic,0,aer
+Triple Blizzaga,Rare 6-9,Command,,,,,Sleight,deal 2 damage to each of the opponent’s backrow champions.,Magic,0,tpb
+Gravity,UC Even,Command,,,,,Clash,"If the clash fails, your active champion takes 3 less damage.",Magic,0,gra
+Dodge Roll,all 1-9,Command,,,,,Form,"On your next turn, you may rotate your Champions before damage.",Speed,0,dor
+Breach,all 1-9,Command,,,,Piercing,Sleight,Another card in the sleight gains piercing.,Power,0,bre
+Charge,all 1-9,Command,,,,Defending,Clash,Draw a card.,Magic,0,cha
+Cleanse,all 1-9,Command,,,,,Clash,Shuffle your discard into your deck.,Magic,0,cle
+Guard,all 1-9,Command,,,,Defending,Clash,Another card in the clash gains Defending.,Power,0,gua
+Strike Raid,all 1-9,Command,,,,,Clash,"If the clash fails, deal 2 to the opponent’s active champion.",Speed,0,str
+Quick Hit,UC Odd,Command,,,,Piercing,Clash,"If this card was used in a Piercing Sleight with other commands, draw a card.",Speed,0,quh
+Dark Raid,Rare 6+ Even,Command,,,,Split,Clash,"If other “dark” cards are in the clash, remove the lowest value from the incoming sleight.",Speed,0,dar
+Warp,Rare 6+ Even,Command,,,,,Form,"When you rotate your Champions, draw a card.",Magic,0,wrp
+Zantetsuken,Rare 6-9,Command,,,,,Sleight,"If every card in the sleight is a Power card and there are atleast 2 cards, the sleight gains Piercing.",Power,0,zan
+Gaia Belt,0,Item,,,,,Item,Power champions deal 2 more damage with attacks.,,0,
+Protect Chain,0,Item,,,,,Item,Your active champion takes 1 less damage.,,0,
+No Exp,0,Item,,,,,Item,Your champion’s strength is 1. Draw an additional card in your draw step.,,0,
+Morningstar,0,Item,,,,,Item,"Whenever you draw a card, your active champion heals 1",,0,
+Earth Impact,UC Odd,Command,,,,,Sleight,"If another “Earth” command is in the sleight, increase Sleight value by 1.",Power,0,eai
+Ars Solem,Rare 6-9,Command,,,,,Sleight,"If another “Ars” command is in the sleight, the sleight gains Piercing.",Power,0,ars
+Ars Arcanum,Rare 6+ Even,Command,,,,,Sleight,"If another “Ars” command is in the sleight, the sleight gains Split.",Speed,0,ara
+Sacrifice,Rare 6-9,Command,,,,,Sleight,Both active champions take 5 damage.,Power,0,sac
