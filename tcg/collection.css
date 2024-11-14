@@ -208,7 +208,9 @@
 }
 
 .deck-list-button,
-.card-list-button {
+.card-list-button,
+.deck-list-button:hover,
+.card-list-button:hover {
   border-radius: 4px;
   border: 0;
   background-color: var(--secondary-color);
@@ -231,7 +233,9 @@
 }
 
 .collection-button,
-.option-button {
+.option-button,
+.collection-button:hover,
+.option-button:hover {
   border-radius: 4px;
   border: 0;
   background-color: var(--secondary-color);
@@ -246,7 +250,8 @@
   flex-wrap: wrap;
   gap: 2px;
 }
-.config-buttons button {
+.config-buttons button,
+.config-buttons button:hover {
   flex-grow: 1;
   width: auto;
   text-align: center;
