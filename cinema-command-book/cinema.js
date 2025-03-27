@@ -51,6 +51,8 @@ if (typeof CommandBookController === "function") {
         "provision-stats",
       ]);
 
+      this.links = this.objectify(["link", "link-details", "link-rank"]);
+
       this.currentPanel = 0;
     }
 
@@ -138,6 +140,7 @@ if (typeof CommandBookController === "function") {
       const primaryColor = this.config[0];
       const accentColor = this.config[1];
       const textColor = this.config[2];
+      const usesLinks = this.config[4]?.toLowerCase() === "yes";
 
       return `
         <div class="cinema-wrapper" style="
@@ -155,6 +158,7 @@ if (typeof CommandBookController === "function") {
                 <button>Style</button>
                 <button>Commands</button>
                 <button>Provisions</button>
+                ${usesLinks ? `<button>Links</button>` : ""}
               </div>
               <div class="cinema-window">
                 ${this.htmlStatSection()}
@@ -163,6 +167,7 @@ if (typeof CommandBookController === "function") {
                 ${this.htmlStyleSection()}
                 ${this.htmlCommandSection()}
                 ${this.htmlProvisionSection()}
+                ${usesLinks ? this.htmlLinkSection() : ""}
               </div>
             </div>
           </div>
@@ -424,6 +429,19 @@ if (typeof CommandBookController === "function") {
                 provision.details,
                 provision.stats
               )
+            )
+            .join("")}
+        </div>
+      `;
+    }
+
+    htmlLinkSection() {
+      console.log(this.links);
+      return `
+        <div class="cinema-section">
+          ${this.links
+            .map((link) =>
+              this.htmlWindowItem(link.name, link.details, link.stats)
             )
             .join("")}
         </div>
