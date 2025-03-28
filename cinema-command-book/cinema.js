@@ -77,6 +77,7 @@ if (typeof CommandBookController === "function") {
       return this.BookContainer.getElementsByClassName("cinema-reel")[0];
     }
     arrayify(element) {
+      if (!element) return [];
       const children = element?.children;
       return Array.from(children).map((element) => {
         const fullString = element.innerHTML;
