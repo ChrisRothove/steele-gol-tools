@@ -221,8 +221,11 @@
 }
 .cinema-footer {
   border-top: 1px solid var(--accent-color);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.6rem;
   text-align: right;
+}
+.cinema-footer a {
+  text-decoration: none;
 }
 .cinema-header b {
   padding: 0 0.2rem;

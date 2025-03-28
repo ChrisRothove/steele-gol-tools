@@ -15,7 +15,7 @@ if (typeof CommandBookController === "function") {
       this.DataContainer =
         document.getElementsByClassName("cinema-placeholder")[bookCount];
 
-      this.config = this.arrayify(this.getFirst("config"));
+      this.config = this.getConfig(this.getFirst("config"));
       this.bio = this.arrayify(this.getFirst("bio"));
       this.stats = this.arrayify(this.getFirst("stats"));
       this.advance = this.arrayify(this.getFirst("advancements"));
@@ -53,6 +53,8 @@ if (typeof CommandBookController === "function") {
 
       this.links = this.objectify(["link", "link-details", "link-rank"]);
 
+      this.timelines = this.getTimelines();
+
       this.currentPanel = 0;
     }
 
@@ -76,13 +78,46 @@ if (typeof CommandBookController === "function") {
     getReel() {
       return this.BookContainer.getElementsByClassName("cinema-reel")[0];
     }
+
+    getConfigProperty(element) {
+      if (!element) return "";
+      const fullString = element.innerHTML;
+      const value = fullString.split("</b>")?.[1] || "";
+      return value.trim();
+    }
+
+    hasBonusConfig(element, configName) {
+      return element.innerHTML.includes(configName);
+    }
+
+    getConfig(element) {
+      if (!element) return [];
+      const children = Array.from(element?.children);
+      const mirageConfig = children.find((child) => {
+        return this.hasBonusConfig(child, "Mirage");
+      });
+      const linkConfig = children.find((child) => {
+        return this.hasBonusConfig(child, "Link");
+      });
+      const timelineConfig = children.find((child) => {
+        return this.hasBonusConfig(child, "Timeline");
+      });
+
+      return [
+        this.getConfigProperty(children[0]),
+        this.getConfigProperty(children[1]),
+        this.getConfigProperty(children[2]),
+        this.getConfigProperty(mirageConfig) || "no",
+        this.getConfigProperty(linkConfig) || "no",
+        this.getConfigProperty(timelineConfig) || "no",
+      ];
+    }
+
     arrayify(element) {
       if (!element) return [];
       const children = element?.children;
       return Array.from(children).map((element) => {
-        const fullString = element.innerHTML;
-        const value = fullString.split("</b>")?.[1] || "";
-        return value.trim();
+        return this.getConfigProperty(element);
       });
     }
     objectify(keyList = []) {
@@ -96,6 +131,27 @@ if (typeof CommandBookController === "function") {
           name: input.innerHTML,
           details: details[index]?.innerHTML,
           stats: stats[index]?.innerHTML,
+        };
+      });
+    }
+
+    getTimelines() {
+      const timelines = this.getAll("timeline");
+      return Array.from(timelines).map((timeline) => {
+        const timelineName = timeline.getAttribute("name");
+        const names = timeline.getElementsByClassName("event");
+        const details = timeline.getElementsByClassName("event-details");
+        const links = timeline.getElementsByClassName("event-link");
+        const events = Array.from(names).map((name, index) => {
+          return {
+            name: name.innerHTML,
+            details: details[index]?.innerHTML,
+            stats: links[index]?.innerHTML,
+          };
+        });
+        return {
+          name: timelineName,
+          events,
         };
       });
     }
@@ -119,8 +175,10 @@ if (typeof CommandBookController === "function") {
     }
 
     assignButtonHandlers() {
-      const buttons = this.getBookButtons();
-      Array.from(buttons)?.forEach((button, index) => {
+      const buttons = Array.from(this.getBookButtons()).filter(
+        (button) => button.nodeName === "BUTTON"
+      );
+      buttons?.forEach((button, index) => {
         button.addEventListener("click", () => this.updatePage(index));
       });
     }
@@ -142,6 +200,7 @@ if (typeof CommandBookController === "function") {
       const accentColor = this.config[1];
       const textColor = this.config[2];
       const usesLinks = this.config[4]?.toLowerCase() === "yes";
+      const usesTimeline = this.config[5]?.toLowerCase() === "yes";
 
       return `
         <div class="cinema-wrapper" style="
@@ -160,6 +219,16 @@ if (typeof CommandBookController === "function") {
                 <button>Commands</button>
                 <button>Provisions</button>
                 ${usesLinks ? `<button>Links</button>` : ""}
+                ${
+                  usesTimeline
+                    ? `<div class="cinema-header"><b>Timelines</b></div>`
+                    : ""
+                }
+                ${
+                  usesTimeline && this.timelines[0]
+                    ? this.htmlTimelineButtons()
+                    : ""
+                }
               </div>
               <div class="cinema-window">
                 ${this.htmlStatSection()}
@@ -169,10 +238,41 @@ if (typeof CommandBookController === "function") {
                 ${this.htmlCommandSection()}
                 ${this.htmlProvisionSection()}
                 ${usesLinks ? this.htmlLinkSection() : ""}
+                ${usesTimeline ? this.htmlTimelineSections() : ""}
               </div>
             </div>
           </div>
         </div>
+      `;
+    }
+
+    htmlTimelineButtons() {
+      return this.timelines
+        .map((timeline) => {
+          return `<button>${timeline.name}</button>`;
+        })
+        .join("");
+    }
+
+    htmlTimelineSections() {
+      return this.timelines
+        .map((timeline) => {
+          return this.htmlDynamicTimelineSection(timeline);
+        })
+        .join("");
+    }
+
+    htmlDynamicTimelineSection(timeline) {
+      console.log(timeline);
+      return `
+      <div class="cinema-section" key="${timeline.name}">
+        ${timeline.events
+          .map((event) => {
+            const eventLink = `<a href="${event.stats}">Thread Link</a>`;
+            return this.htmlWindowItem(event.name, event.details, eventLink);
+          })
+          .join("")}
+      </div>
       `;
     }
 
@@ -437,7 +537,6 @@ if (typeof CommandBookController === "function") {
     }
 
     htmlLinkSection() {
-      console.log(this.links);
       return `
         <div class="cinema-section">
           ${this.links
